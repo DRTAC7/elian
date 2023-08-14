@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+# Written by dirt_hack_seven with the assistance of ChatGPT
+# Very special thanks to C.C. Elian for the thoughtful creation of this lovely alphabet.
+# https://www.github.com/drtac7/elian
+
 use strict;
 use warnings;
 use utf8;
