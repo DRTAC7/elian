@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# Elian Script Converter
+# Version 1.1
 # Written by dirt_hack_seven with the assistance of ChatGPT
 # Very special thanks to C.C. Elian for the thoughtful creation of this lovely alphabet.
 # https://www.github.com/drtac7/elian
@@ -57,12 +59,14 @@ sub convert_english_to_elian {
 
 sub interactive_mode {
     ReadMode('cbreak');
-    print "Enter English text (press Ctrl-C to exit):\n";
     my $english_input = '';
     while (1) {
         my $key = ReadKey(0);
         last if ord($key) == 3;  # Ctrl-C to exit
-        if (ord($key) == 127) {  # Backspace key
+        if ($key eq "\n" || $key eq "\r") {  # Newline or carriage return key
+            print "\n";
+            $english_input = '';  # Clear the input buffer on new line or carriage return
+        } elsif (ord($key) == 127) {  # Backspace key
             if (length($english_input) > 0) {
                 print "\b \b";  # Move cursor back, overwrite, and move cursor back again
                 chop($english_input);
@@ -71,16 +75,24 @@ sub interactive_mode {
             $english_input .= $key;
         }
         my $elian_text = convert_english_to_elian($english_input);
-        print "\rElian: $elian_text";
+        print "\r$elian_text";
     }
     ReadMode('normal');
     print "\n";
 }
 
 sub regular_mode {
-    my $english_text = join(' ', @ARGV) || '';
+    my $english_text = _prompt_for_input("Enter English text: ");
     my $elian_text = convert_english_to_elian($english_text);
     print "Elian: $elian_text\n";
+}
+
+sub _prompt_for_input {
+    my ($prompt) = @_;
+    print $prompt;
+    my $input = <STDIN>;
+    chomp($input);
+    return $input;
 }
 
 # Main script starts here
