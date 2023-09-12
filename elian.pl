@@ -29,6 +29,7 @@ sub convert_english_to_elian {
         "g" => "厂",
         "h" => "匚",
         "i" => "𠃊",
+
         "j" => "ᒣ",
         "k" => "ᓗ",
         "l" => "ᒧ",
@@ -38,6 +39,7 @@ sub convert_english_to_elian {
         "p" => "ᒥ",
         "q" => "ᓕ",
         "r" => "ᒪ",
+
         "s" => "ᒭ",
         "t" => "ᓘ",
         "u" => "ᒨ",
@@ -98,10 +100,10 @@ sub _prompt_for_input {
 # Main script starts here
 binmode STDOUT, ":utf8";  # Set terminal output to UTF-8
 
-if (@ARGV && $ARGV[0] eq "i") {
-    interactive_mode();
-} else {
+if (@ARGV && $ARGV[0] eq "t") {
     regular_mode();
+} else {
+    interactive_mode();
 }
 
 exit;
