@@ -98,7 +98,7 @@ sub _prompt_for_input {
 # Main script starts here
 binmode STDOUT, ":utf8";  # Set terminal output to UTF-8
 
-if (@ARGV && $ARGV[0] eq "-i") {
+if (@ARGV && $ARGV[0] eq "i") {
     interactive_mode();
 } else {
     regular_mode();
